@@ -1,0 +1,24 @@
+{
+  "name": "DJ WILMER Player PWA",
+  "short_name": "DJ WILMER",
+  "description": "Reproductor oficial de streaming y radio PWA de DJ WILMER",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#d946ef",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

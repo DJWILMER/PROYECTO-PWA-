@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ WILMER - Radio & Streaming PWA</title>
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#d946ef">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png">
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS (Mapa) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-neon">
+  <div class="bg-overlay"></div>
+
+  <!-- Header / Navbar -->
+  <header class="app-header">
+    <div class="brand">
+      <img src="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png" alt="DJ WILMER Logo" class="brand-logo">
+      <div class="brand-info">
+        <h1>DJ WILMER</h1>
+        <span class="badge-live"><i class="fa-solid fa-circle"></i> EN VIVO</span>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <!-- Selector de Temas -->
+      <select id="theme-select" class="theme-dropdown" title="Cambiar Tema">
+        <option value="theme-neon">💗 Chica & Neon</option>
+        <option value="theme-gold">🔥 Gold Party</option>
+        <option value="theme-cyber">💙 Cyberpunk</option>
+        <option value="theme-dark">🖤 Dark Glass</option>
+      </select>
+
+      <button id="install-pwa-btn" class="btn-install" style="display: none;">
+        <i class="fa-solid fa-download"></i> Instalar App
+      </button>
+    </div>
+  </header>
+
+  <main class="main-container">
+    
+    <!-- Player Principal -->
+    <section class="player-card glass">
+      <div class="album-art-wrapper">
+        <img src="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png" alt="DJ Wilmer" class="album-art" id="player-art">
+        <div class="equalizer" id="equalizer">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="track-info">
+        <h2 id="song-title">Cargando transmisión...</h2>
+        <p id="artist-name">DJ WILMER - Sonando Fuerte</p>
+      </div>
+
+      <!-- Control de Audio -->
+      <audio id="radio-audio" preload="none">
+        <source src="https://stream.zeno.fm/zzrxpmz2mv8uv" type="audio/mpeg">
+        Tu navegador no soporta el reproductor.
+      </audio>
+
+      <div class="player-controls">
+        <button id="btn-play" class="btn-play-main">
+          <i class="fa-solid fa-play" id="play-icon"></i>
+        </button>
+
+        <div class="volume-container">
+          <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.9">
+        </div>
+
+        <button id="btn-like" class="btn-like">
+          <i class="fa-solid fa-heart"></i> <span id="like-count">1.2k</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Navegación de Pestañas -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+      <button class="tab-btn" data-tab="tab-youtube"><i class="fa-brands fa-youtube"></i> YouTube</button>
+      <button class="tab-btn" data-tab="tab-news"><i class="fa-solid fa-newspaper"></i> Noticias</button>
+      <button class="tab-btn" data-tab="tab-map"><i class="fa-solid fa-earth-americas"></i> Oyentes</button>
+      <button class="tab-btn" data-tab="tab-socials"><i class="fa-brands fa-instagram"></i> Redes</button>
+    </nav>
+
+    <!-- Contenido de Pestañas -->
+    <div class="tab-content-wrapper">
+
+      <!-- Sección WhatsApp -->
+      <section id="tab-whatsapp" class="tab-panel active">
+        <h3 class="panel-title"><i class="fa-brands fa-whatsapp"></i> Comunidad & Grupos Oficiales</h3>
+        <div class="grid-cards">
+          <div class="card glass highlight-card">
+            <div class="card-icon wa-bg"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="card-info">
+              <h4>Grupo Oficial DJ WILMER</h4>
+              <p>Únete para pedir tus canciones y saludos en vivo.</p>
+            </div>
+            <a href="https://chat.whatsapp.com/HjONHx6yKRDJsT6LiTwKjF" target="_blank" rel="noopener" class="btn-action wa-btn">
+              <i class="fa-solid fa-user-plus"></i> Unirme al Grupo
+            </a>
+          </div>
+
+          <div class="card glass">
+            <div class="card-icon wa-bg"><i class="fa-solid fa-comments"></i></div>
+            <div class="card-info">
+              <h4>Pedidos y Saludos DJ WILMER</h4>
+              <p>Escribe directamente a la cabina de transmisión.</p>
+            </div>
+            <a href="https://chat.whatsapp.com/HjONHx6yKRDJsT6LiTwKjF" target="_blank" rel="noopener" class="btn-action">
+              <i class="fa-brands fa-whatsapp"></i> Contactar Cabina
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección YouTube -->
+      <section id="tab-youtube" class="tab-panel">
+        <h3 class="panel-title"><i class="fa-brands fa-youtube"></i> Canal Oficial DJ WILMER</h3>
+        <div class="video-container glass">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed?listType=user_uploads&list=WilmerDelgadoCieza" 
+            title="DJ Wilmer YouTube" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="center-btn">
+          <a href="https://www.youtube.com/@WilmerDelgadoCieza" target="_blank" rel="noopener" class="btn-action yt-btn">
+            <i class="fa-brands fa-youtube"></i> Ver Canal Completo @WilmerDelgadoCieza
+          </a>
+        </div>
+      </section>
+
+      <!-- Sección Noticias -->
+      <section id="tab-news" class="tab-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-newspaper"></i> Noticias Perú & El Mundo</h3>
+        <div id="news-list" class="news-grid">
+          <!-- Se cargan dinámicamente con JS -->
+        </div>
+      </section>
+
+      <!-- Sección Mapa de Oyentes -->
+      <section id="tab-map" class="tab-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-location-dot"></i> Oyentes Conectados en Directo</h3>
+        <div class="map-stats glass">
+          <div class="stat-box">
+            <span class="stat-num" id="total-listeners">342</span>
+            <span class="stat-label">Oyentes Activos</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">🇵🇪 🇲🇽 🇺🇸 🇪🇸</span>
+            <span class="stat-label">Países Destacados</span>
+          </div>
+        </div>
+        <div id="listeners-map" class="map-container glass"></div>
+      </section>
+
+      <!-- Sección Redes / Instagram -->
+      <section id="tab-socials" class="tab-panel">
+        <h3 class="panel-title"><i class="fa-brands fa-instagram"></i> Sigue a DJ WILMER</h3>
+        <div class="card glass social-card">
+          <img src="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png" alt="DJ Wilmer" class="social-avatar">
+          <h4>Wilmer Delgado Cieza</h4>
+          <p>@wilmerdelgadocieza</p>
+          <a href="https://www.instagram.com/wilmerdelgadocieza" target="_blank" rel="noopener" class="btn-action ig-btn">
+            <i class="fa-brands fa-instagram"></i> Seguir en Instagram
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; 2026 DJ WILMER - Todos los derechos reservados. Desarrollado para Móvil y PC.</p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
